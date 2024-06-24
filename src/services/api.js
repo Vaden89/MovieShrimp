@@ -19,3 +19,14 @@ export const fetchMovies = async (endpoint, params = {}) => {
     );
   }
 };
+
+export const fetchMoviesByGenre = async (genreId) => {
+  try {
+    const endpoint = "/discover/movie";
+    const params = { with_genres: genreId };
+    const res = await api.get(endpoint, { params });
+    return res.data.results;
+  } catch (error) {
+    throw new Error("There was an error fetching movies by genre", error);
+  }
+};
