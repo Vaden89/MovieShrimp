@@ -12,12 +12,13 @@ export const Findmovie = () => {
     { moodName: "Loving", selected: false, genreID: [35, 18, 10749, 14] },
   ]);
   const [genreIDs, setGenreIDs] = useState([]);
-  const [movies, setMovies] = useState([]);
+  const [pickedMovie, setPickedMovie] = useState({});
+  const [movieHasBeenGenreated, setMovieHasBeenGenerated] = useState(false);
   /*
   Task 1 Completed ✅
   Task 2 Completed ✅
   Task 3 Completed ✅
-  Task 4: Setup Fetching data from the api with the selected moods
+  Task 4: Completed ✅
   */
   const handleMoodSelect = (mood) => {
     if (genreIDs.includes(mood.genreID)) {
@@ -57,6 +58,9 @@ export const Findmovie = () => {
       const randomIndex = Math.floor(Math.random() * allMovies.length);
       const randomMovie = allMovies[randomIndex];
       console.log(randomMovie);
+      setPickedMovie(randomMovie);
+      console.log(pickedMovie);
+      setMovieHasBeenGenerated(true);
     } else {
       console.warn("No movies found for any genre.");
     }
@@ -80,7 +84,11 @@ export const Findmovie = () => {
           );
         })}
       </div>
-      <button onClick={handleFindMovie}>Test</button>
+      {movieHasBeenGenreated ? (
+        <span>Hi</span>
+      ) : (
+        <button onClick={handleFindMovie}>Test</button>
+      )}
     </div>
   );
 };
